@@ -1,0 +1,11 @@
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+logs
+OpenFinRVM.exe
+OpenFin
+
+local.json
+package-lock.json
