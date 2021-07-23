@@ -31,7 +31,10 @@ export async function init(tabOptions) {
       if (layoutContainer !== undefined && layoutContainer !== null) {
         layoutContainer.addEventListener("tab-created", ({ detail }) => {
           debugger;
-          finWindow.customData = "testing";
+          const win = fin.Window.getCurrentSync();
+          const testData = {type: detail.name, data:"Testing-tabAdded"};
+
+          win.updateOptions({customData:testData});
           const view = fin.View.wrapSync({ uuid: detail.uuid, name: detail.name});
           console.log('wrapped view', view.getInfo());
           
@@ -55,9 +58,9 @@ function setupTabs(data, tabOptions) {
     console.log("tab-manager: setupTabs called.");
     data.forEach((view) => {
       const win = fin.Window.getCurrentSync();
-      const car = {type: view.identity.name, data:"Testing"};
+      const testData = {type: view.identity.name, data:"Testing"};
       
-      win.updateOptions({customData:car});
+      win.updateOptions({customData:testData});
 
       document.getElementById("HeaderText").innerHTML = view.identity.name;
       view.addListener("focused", function(event) {

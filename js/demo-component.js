@@ -1,8 +1,7 @@
 class Dropdown extends HTMLButtonElement {
     constructor() {
       super(); // always call super() first in the constructor.
-      this.addEventListener('click', e => this.callJavascriptFunction());
-      
+      this.addEventListener('click', e => this.showPopupMenu());
     }
 
     set viewName(value) {
@@ -16,13 +15,14 @@ class Dropdown extends HTMLButtonElement {
     set margin(margins) {
       if (margins !== undefined && margins.right !== undefined) {
         this.style.marginRight = margins.right;
-        this.style.height = {height: "10px"};
+        this.style.height = "15px";
       }
     }
     connectedCallback() {
       this.margin = { right: "10px" };
     }
-    async callJavascriptFunction(){
+
+    async showPopupMenu(){
       const wnd = fin.Window.getCurrentSync()
       const options = await wnd.getOptions()
       
